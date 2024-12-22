@@ -55,10 +55,13 @@ def getQuestPage(questId):
 
 
 def getObjectiveOfDataLine(elements):
+    objectiveOfFound = False
     for element in elements:
         lines = element.text.split("\n")
         for line in lines:
-            if "data:" in line and '"name"' in line and '"xp"' in line:
+            if "objective-of" in line:
+                objectiveOfFound = True
+            if objectiveOfFound and "data:" in line:
                 return line
 
 
