@@ -43,7 +43,7 @@ def getQuantityForItem(itemName, questElements):
 
 
 def getItemPage(itemId):
-    response = requests.get(f"https://www.wowhead.com/classic/item={item_id}")
+    response = requests.get(f"https://www.wowhead.com/classic/item={itemId}")
     sleep(2)
     return BeautifulSoup(response.content, "html.parser")
 
