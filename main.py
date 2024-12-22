@@ -25,9 +25,11 @@ def getItemQuestsInfo(itemId):
         questPage = getQuestPage(quest["id"])
         questElements = questPage.find_all("tr", {"data-icon-list-quantity": True})
         quantity = getQuantityForItem(itemName, questElements)
-        questIds.append(
-            {"id": quest["id"], "name": quest["name"], "quantityNeeded": quantity}
-        )
+
+        if not "<UNUSED>" in quest["name"]:
+            questIds.append(
+                {"id": quest["id"], "name": quest["name"], "amountNeeded": quantity}
+            )
 
     return questIds
 
