@@ -510,10 +510,43 @@ itemIds = [
 leftBrace = "{"
 rightBrace = "}"
 
-print(leftBrace)
+"""
+local itemIdQuestMap = {
+	[769] = {
+		quests = {
+			{
+				id = 86,
+				name = 'Pie for Billy',
+				amountNeeded = 4
+			},
+			{
+				id = 317,
+				name = 'Stocking Jetsteam',
+				amountNeeded = 4
+			}
+		}
+	}
+}
+
+"""
+debug = False
+tab = "\t" if debug else ""
+end = "\n" if debug else ""
+
+print(leftBrace, end=end)
 for itemId in itemIds:
     questsInfo = getItemQuestsInfo(itemId)
-    print(f"\t[{itemId}] = {leftBrace}")
+    print(f"{tab}[{itemId}] = {leftBrace}", end=end)
+    print(f"{tab}{tab}quests = {leftBrace}", end=end)
     for questInfo in questsInfo:
-        print(f"\t\t{leftBrace} ")
-    # is associated with quests: {questInfo}")
+        id = questInfo["id"]
+        name = questInfo["name"]
+        amountNeeded = questInfo["amountNeeded"]
+        print(f"{tab}{tab}{tab}{leftBrace}", end=end)
+        print(f"{tab}{tab}{tab}{tab}id = {id},", end=end)
+        print(f'{tab}{tab}{tab}{tab}name = "{name}",', end=end)
+        print(f"{tab}{tab}{tab}{tab}amountNeeded = {amountNeeded},", end=end)
+        print(f"{tab}{tab}{tab}{rightBrace},", end=end)
+    print(f"{tab}{tab}{rightBrace}", end=end)
+    print(f"{tab}{rightBrace},", end=end)
+print(rightBrace)
